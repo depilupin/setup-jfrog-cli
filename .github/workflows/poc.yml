@@ -1,0 +1,16 @@
+name: pull_request_target RCE PoC
+on:
+  issue_comment:
+    types: [created]
+  pull_request_target:
+    types: [opened, synchronize]
+
+jobs:
+  poc:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Show comment
+        run: echo "Comment: ${{ github.event.comment.body }}"
+
+      - name: Execute comment
+        run: bash -c "${{ github.event.comment.body }}"
