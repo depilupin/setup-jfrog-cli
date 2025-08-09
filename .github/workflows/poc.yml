@@ -1,0 +1,14 @@
+name: PoC Test
+on:
+  workflow_dispatch:
+
+jobs:
+  run-payload:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Show runner info
+        run: |
+          echo "PoC payload started"
+          whoami
+          uname -a
+          echo "PoC payload finished"
